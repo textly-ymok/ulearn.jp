@@ -1,0 +1,17 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.validate": false,
+  "tailwindCSS.lint.recommendedVariantOrder": "ignore",
+  "tailwindCSS.codeActions": false,
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.hg/**",
+    "**/.svn/**",
+    "**/yarn.lock",
+    "**/@generated/**"
+  ]
+}
