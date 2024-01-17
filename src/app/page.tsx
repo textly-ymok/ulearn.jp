@@ -217,7 +217,7 @@ export default function Home() {
               title="代表取締役"
             />
             <Person name="和田 透雄" ename="Yukio Wada" title="取締役" />
-            <Person name="吉積 慧一郎" ename="Keiichio Yoshizumi" title="　" />
+            <Person name="吉積 慧一郎" ename="Keiichiro Yoshizumi" title="　" />
           </div>
         </Content>
         <More id="contact" />
