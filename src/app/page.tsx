@@ -18,6 +18,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const menuItems = [
+  { label: "ニュース", id: "news" },
   { label: "サービス", id: "service" },
   { label: "会社概要", id: "about" },
   { label: "メンバー", id: "member" },
@@ -86,12 +87,25 @@ export default function Home() {
 
   const Br = () => <br className="md:hidden" />;
 
-  const AboutItem = ({ itemName, itemValue }) => (
-    <div className="flex flex-col">
-      <div className="text-sm md:text-xl text-gray-400 font-bold">
+  const Item = ({
+    itemName,
+    classNameOfName,
+    itemValue,
+    classNameOfValue,
+    id,
+  }) => (
+    <div className="flex flex-col" id={id}>
+      <div
+        className={clsx(
+          "text-sm md:text-xl text-gray-400 font-bold",
+          classNameOfName
+        )}
+      >
         {itemName}
       </div>
-      <div className="text-xl md:text-2xl">{itemValue}</div>
+      <div className={clsx("text-xl md:text-2xl", classNameOfValue)}>
+        {itemValue}
+      </div>
     </div>
   );
 
@@ -104,7 +118,9 @@ export default function Home() {
   );
 
   const gsap_from = { opacity: 0, y: 40 };
+  const gsap_from_right = { opacity: 0, x: 40 };
   const gsap_to = { opacity: 1, y: 0, duration: 1 };
+  const gsap_to_2 = { opacity: 1, x: 0, duration: 1 };
   const trigger = (id) => ({
     scrollTrigger: { trigger: id, start: "bottom center", end: "bottom top" },
   });
@@ -124,9 +140,25 @@ export default function Home() {
       ...gsap_to,
     });
 
-    gsap.fromTo("#service-content", gsap_from, {
+    gsap.fromTo("#news-content", gsap_from, {
       ...gsap_to,
       ...trigger("#mission"),
+    });
+
+    gsap.fromTo("#news-1", gsap_from_right, {
+      ...gsap_to_2,
+      ...trigger("#mission"),
+      delay: 0.5,
+    });
+    gsap.fromTo("#news-2", gsap_from_right, {
+      ...gsap_to_2,
+      ...trigger("#mission"),
+      delay: 1.0,
+    });
+
+    gsap.fromTo("#service-content", gsap_from, {
+      ...gsap_to,
+      ...trigger("#news"),
     });
     gsap.fromTo("#about-content", gsap_from, {
       ...gsap_to,
@@ -155,11 +187,35 @@ export default function Home() {
         </div>
         <NavMenu />
       </nav>
+
       <Section id="mission" className="text-4xl md:text-5xl font-extrabold">
         <Content id="mission">
           学びを通じて、
           <Br />
           社会を豊かに
+        </Content>
+        <More id="news" />
+      </Section>
+
+      <Section id="news" className="text-4xl md:text-5xl font-extrabold">
+        <Content id="news">
+          <h1 className="text-4xl md:text-5xl font-extrabold">News</h1>
+          <div className="flex flex-col gap-4 mt-12">
+            <Item
+              id="news-1"
+              itemName="2024年1月15日"
+              classNameOfName="text-sm md:text-sm"
+              itemValue="経済産業省の「令和5年度　大企業等人材による新規事業創造促進事業」に、ulearn株式会社が採択されました。"
+              classNameOfValue="text-md md:text-xl"
+            />
+            <Item
+              id="news-2"
+              itemName="2023年10月2日"
+              classNameOfName="text-sm md:text-sm"
+              itemValue="ulearn株式会社（本社：東京都渋谷区、代表取締役：山岡久俊）を設立いたしました。"
+              classNameOfValue="text-md md:text-xl"
+            />
+          </div>
         </Content>
         <More id="service" />
       </Section>
@@ -189,17 +245,14 @@ export default function Home() {
         <Content id="about">
           <h1 className="text-4xl md:text-5xl font-extrabold">会社概要</h1>
           <div className="flex flex-col gap-4 mt-12">
-            <AboutItem
-              itemName="会社名"
-              itemValue="ulearn(ユーラーン)株式会社"
-            />
-            <AboutItem itemName="設立日" itemValue="2023年10月2日" />
-            <AboutItem itemName="資本金" itemValue="500万円" />
-            <AboutItem
+            <Item itemName="会社名" itemValue="ulearn(ユーラーン)株式会社" />
+            <Item itemName="設立日" itemValue="2023年10月2日" />
+            <Item itemName="資本金" itemValue="500万円" />
+            <Item
               itemName="事業内容"
               itemValue="教育コンテンツの仲介プラットフォーム事業"
             />
-            <AboutItem
+            <Item
               itemName="所在地"
               itemValue="東京都渋谷区道玄坂１丁目１０番８号渋谷道玄坂東急ビル２Ｆ－Ｃ"
             />
