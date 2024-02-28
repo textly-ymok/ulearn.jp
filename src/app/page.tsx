@@ -220,10 +220,10 @@ export default function Home() {
         <More id="service" />
       </Section>
 
-      <Section id="service" className="bg-[url('/bg.jpg')] p-0 md:p-0">
+      <Section id="service" className="bg-[url('/bg.jpg')] bg-[] p-0 md:p-0">
         <Content id="service">
           <h1 className="text-6xl md:text-8xl font-extrabold text-white">
-            textly
+            Publish
           </h1>
 
           <div className="flex flex-col justify-center items-center mt-8">
@@ -231,7 +231,7 @@ export default function Home() {
               クラウドファンディング型
             </h1>
             <h1 className="text md:text-2xl text-white">
-              Webテキスト出版プラットフォーム
+              デジタル書籍出版プラットフォーム
             </h1>
           </div>
           <div className="flex flex-col justify-center items-center mt-6">
